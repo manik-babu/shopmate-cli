@@ -5,13 +5,14 @@
 // Get all the user present in the database
 
 using System;
-namespace Ecommerce
+namespace Shopmate.Models
 {
     class User
     {
         public string FullName { get; set; }
         public string UserName { get; set; }
         private string Password;
+        public string ShopName { get; set; }
 
         public User(string fullname, string username, string password)
         {
@@ -31,17 +32,13 @@ namespace Ecommerce
     }
     class Users
     {
-        private User[] users = new User[100];
-        private int UserCount;
-        public Users()
-        {
-            this.UserCount = 0;
-        }
-        public void Add(string fullName, string userName, string password)
+        private static User[] users = new User[100];
+        private static int UserCount = 0;
+        public static void Add(string fullName, string userName, string password)
         {
             users[UserCount++] = new User(fullName, userName, password);
         }
-        public bool Exists(string username)
+        public static bool Exists(string username)
         {
             for (int i = 0; i < UserCount; i++)
             {
@@ -52,7 +49,7 @@ namespace Ecommerce
             }
             return false;
         }
-        public bool Exists(string username, string password)
+        public static bool Exists(string username, string password)
         {
             for (int i = 0; i < UserCount; i++)
             {
@@ -64,7 +61,7 @@ namespace Ecommerce
             return false;
         }
 
-        public User Get(string username)
+        public static User Get(string username)
         {
 
             foreach (User user in users)

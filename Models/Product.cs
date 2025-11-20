@@ -2,7 +2,7 @@
 // Where we can store product data and manage adding, and finding product
 
 using System;
-namespace Ecommerce
+namespace Shopmate.Models
 {
     class Product
     {
@@ -31,29 +31,24 @@ namespace Ecommerce
         }
 
     }
-    class Products
+    static class Products
     {
-        private Product[] products = new Product[1000];
-        private int ProductCount;
-        public Products()
+        private static Product[] products = new Product[1000];
+        private static int ProductCount = 0;
+        public static void Add(string owner, string title, string description, int price)
         {
-            this.ProductCount = 0;
+            products[ProductCount] = new Product(++ProductCount, owner, title, description, price);
         }
-        public void Add(string owner, string title, string description, int price)
-        {
-            this.products[this.ProductCount] = new Product(++this.ProductCount, owner, title, description, price);
-        }
-        public void ShowAll(int start, int end)
+        public static void ShowAll(int start, int end)
         {
             for (int i = start; i <= end; i++)
             {
-                this.products[i].Details();
+                products[i].Details();
             }
         }
-        public Product Get(int id)
+        public static Product Get(int id)
         {
-            return this.products[id - 1];
+            return products[id - 1];
         }
-
     }
 }

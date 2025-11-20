@@ -1,5 +1,5 @@
 using System;
-namespace Ecommerce
+namespace Shopmate.Models
 {
     class Order
     {
@@ -25,19 +25,15 @@ namespace Ecommerce
             Console.WriteLine("Product: " + Product.Title);
         }
     }
-    class Orders
+    static class Orders
     {
-        private Order[] orders = new Order[200];
-        private int OrderCount;
-        public Orders()
-        {
-            this.OrderCount = 0;
-        }
-        public void add(string orderedBy, string orderedTo, Product product)
+        private static Order[] orders = new Order[200];
+        private static int OrderCount = 0;
+        public static void add(string orderedBy, string orderedTo, Product product)
         {
             orders[OrderCount] = new Order(++OrderCount, orderedBy, orderedTo, product);
         }
-        public void GetStoreOrder(string userName, string status)
+        public static void GetStoreOrder(string userName, string status)
         {
             foreach (Order order in orders)
             {
@@ -47,7 +43,7 @@ namespace Ecommerce
                 }
             }
         }
-        public void GetCustomerOrders(string userName, string status)
+        public static void GetCustomerOrders(string userName, string status)
         {
             foreach (Order order in orders)
             {

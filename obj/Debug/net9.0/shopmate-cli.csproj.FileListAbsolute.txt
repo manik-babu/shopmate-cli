@@ -12,3 +12,4 @@
 /home/manik/Projects/shopmate-cli/obj/Debug/net9.0/shopmate-cli.pdb
 /home/manik/Projects/shopmate-cli/obj/Debug/net9.0/shopmate-cli.genruntimeconfig.cache
 /home/manik/Projects/shopmate-cli/obj/Debug/net9.0/ref/shopmate-cli.dll
+/home/manik/Projects/shopmate-cli/obj/Debug/net9.0/shopmate-cli.sourcelink.json
