@@ -4,6 +4,9 @@ namespace Shopmate.Services
     {
         public static void Home()
         {
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine($"\tHome");
+            Console.WriteLine("---------------------------------");
             Console.WriteLine("1. Profile");
             Console.WriteLine("2. My store");
             Console.WriteLine("3. Market place");
@@ -38,6 +41,9 @@ namespace Shopmate.Services
         }
         public static void Profile()
         {
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine($"\tProfile");
+            Console.WriteLine("---------------------------------");
             string shopName = Auth.loggedInUser.ShopName == "-" ? "You'r not a seller!" : Auth.loggedInUser.ShopName;
             Console.WriteLine($"Shop Name\t{shopName}");
             Console.WriteLine($"Name     \t{Auth.loggedInUser.FullName}");

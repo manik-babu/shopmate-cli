@@ -10,6 +10,9 @@ namespace Shopmate.Services
 
         public static void Authinticate()
         {
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine($"\tAuthintication");
+            Console.WriteLine("---------------------------------");
             Console.WriteLine("1. Login\n2. Signup");
             Console.WriteLine("Choose one (1/2)");
             Console.Write("=> ");
@@ -30,6 +33,9 @@ namespace Shopmate.Services
         }
         public static void Login()
         {
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine($"\tLogin");
+            Console.WriteLine("---------------------------------");
             Console.WriteLine("Welcome back!");
             ShopMateUtils.Loading(500);
             Console.WriteLine("Please enter your details to login.");
@@ -57,6 +63,9 @@ namespace Shopmate.Services
 
         public static void Signup()
         {
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine($"\tSignup");
+            Console.WriteLine("---------------------------------");
             Console.WriteLine("Let's get you set up!");
             ShopMateUtils.Loading(500);
             Console.WriteLine("Please enter the following details to create an account.");
@@ -70,11 +79,9 @@ namespace Shopmate.Services
             userName = Console.ReadLine();
             while (Users.Exists(userName))
             {
-                Console.WriteLine("Username already exist!");
-                ShopMateUtils.Loading(300);
-                Console.WriteLine("Please choose another.");
-                ShopMateUtils.Loading(300);
-                Console.WriteLine("Create an username: ");
+                Console.WriteLine("Username already exist! Please choose another.");
+                ShopMateUtils.Loading(500);
+                Console.Write("Create an username: ");
                 userName = Console.ReadLine();
             }
             Users.Add(fullName, userName, password);
