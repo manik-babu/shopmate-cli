@@ -40,6 +40,10 @@ namespace Shopmate.Utils
                 Console.Write("-");
             }
             Console.WriteLine();
+            for (int i = 0; i <= (width - name.Length) / 2; i++)
+            {
+                Console.Write(" ");
+            }
             Console.Write($" {name} ");
             Console.WriteLine();
             for (int i = 0; i <= width; i++)

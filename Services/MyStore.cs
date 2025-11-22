@@ -8,9 +8,7 @@ namespace Shopmate.Services
         {
             if (Auth.loggedInUser.ShopName == "-")
             {
-                Console.WriteLine("---------------------------------");
-                Console.WriteLine($"\tMy Store");
-                Console.WriteLine("---------------------------------");
+                ShopMateUtils.PageName("My Store");
                 ShopMateUtils.Loading(500);
                 Console.WriteLine("Looks like you don’t have a shop yet.");
                 ShopMateUtils.Loading(500);
@@ -42,9 +40,7 @@ namespace Shopmate.Services
         }
         public static void StoreHome()
         {
-            Console.WriteLine("---------------------------------");
-            Console.WriteLine($"\t{Auth.loggedInUser.ShopName}");
-            Console.WriteLine("---------------------------------");
+            ShopMateUtils.PageName("My Store");
             Console.WriteLine("1. My Products");
             Console.WriteLine("2. Add Products");
             Console.WriteLine("3. Pending Orders");
@@ -67,9 +63,7 @@ namespace Shopmate.Services
         }
         public static void ProductAdd()
         {
-            Console.WriteLine("---------------------------------");
-            Console.WriteLine("\tAdd Product");
-            Console.WriteLine("---------------------------------");
+            ShopMateUtils.PageName("Add Product");
             Console.WriteLine("List a new product for sale");
             Console.Write("Product Title: ");
             string title = Console.ReadLine();
@@ -78,9 +72,7 @@ namespace Shopmate.Services
             Console.Write("Product Price: ");
             int price = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("---------------------------------");
-            Console.WriteLine("\tPreview");
-            Console.WriteLine("---------------------------------");
+            ShopMateUtils.PageName("Preview");
             Console.WriteLine("Title: " + title);
             Console.WriteLine("Description: " + description);
             Console.WriteLine("Price: " + price);
@@ -122,9 +114,7 @@ namespace Shopmate.Services
         public static void MyProductList()
         {
 
-            Console.WriteLine("---------------------------------");
-            Console.WriteLine($"\tMy Products");
-            Console.WriteLine("---------------------------------");
+            ShopMateUtils.PageName("My Products");
             Shopmate.Models.Products.ShowByUsername(Auth.loggedInUser.UserName);
             Console.WriteLine("1. Remove product");
             Console.WriteLine("0. Go back to my store");
@@ -142,7 +132,22 @@ namespace Shopmate.Services
         }
         public static void RemoveProduct()
         {
-            //
+            Console.Write("Enter product ID to remove (or 'C' to Cancel): ");
+            string choice = Console.ReadLine().ToLower();
+            if (choice != "c")
+            {
+                int productId = Convert.ToInt32(choice);
+                Shopmate.Models.Products.Remove(productId);
+                ShopMateUtils.Loading("Removing", 1500);
+                Console.WriteLine("Product removed successfully");
+                ShopMateUtils.Loading(1500);
+            }
+            else
+            {
+                Console.WriteLine("Canceled!");
+            }
+            MyProductList();
+
         }
 
 
