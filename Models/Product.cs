@@ -67,11 +67,24 @@ namespace Shopmate.Models
         {
             return products[id - 1];
         }
-        public static void Remove(int id)
+        public static bool Remove(int id, string userName)
         {
+            id--;
+            if (ProductCount < id)
+            {
+                return false;
+            }
 
-            products[id - 1].ProductId = -1;
-            products[id - 1].Owner = "null";
+            if (products[id].Owner == userName)
+            {
+                products[id].ProductId = -1;
+                products[id].Owner = "null";
+                return true;
+            }
+            else
+            {
+                return false;
+            }
 
         }
     }

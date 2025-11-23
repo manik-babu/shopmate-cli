@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using Shopmate.Models;
 using Shopmate.Utils;
 namespace Shopmate.Services
@@ -137,10 +138,18 @@ namespace Shopmate.Services
             if (choice != "c")
             {
                 int productId = Convert.ToInt32(choice);
-                Shopmate.Models.Products.Remove(productId);
-                ShopMateUtils.Loading("Removing", 1500);
-                Console.WriteLine("Product removed successfully");
-                ShopMateUtils.Loading(1500);
+                bool isRemoveProduct = Shopmate.Models.Products.Remove(productId, Auth.loggedInUser.UserName);
+                if (isRemoveProduct)
+                {
+                    ShopMateUtils.Loading("Removing", 1500);
+                    Console.WriteLine("Product removed successfully");
+                    ShopMateUtils.Loading(1500);
+                }
+                else
+                {
+                    Console.WriteLine("Product not found!");
+                }
+                MyProductList();
             }
             else
             {
