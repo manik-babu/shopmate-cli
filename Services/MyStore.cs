@@ -42,11 +42,11 @@ namespace Shopmate.Services
         public static void StoreHome()
         {
             ShopMateUtils.PageName("My Store");
-            Console.WriteLine("1. My Products");
-            Console.WriteLine("2. Add Products");
-            Console.WriteLine("3. Pending Orders");
-            Console.WriteLine("4. Confirmed Orders");
-            Console.WriteLine("0. Back");
+            Console.WriteLine("1. My products");
+            Console.WriteLine("2. Add products");
+            Console.WriteLine("3. Pending orders");
+            Console.WriteLine("4. Confirmed orders");
+            Console.WriteLine("0. Back to home page");
             int choice = ShopMateUtils.ReadChoice(new int[] { 0, 1, 2, 3 });
 
             switch (choice)
@@ -143,11 +143,12 @@ namespace Shopmate.Services
                 {
                     ShopMateUtils.Loading("Removing", 1500);
                     Console.WriteLine("Product removed successfully");
-                    ShopMateUtils.Loading(1500);
+                    ShopMateUtils.Loading(1000);
                 }
                 else
                 {
                     Console.WriteLine("Product not found!");
+                    ShopMateUtils.Loading(1000);
                 }
                 MyProductList();
             }

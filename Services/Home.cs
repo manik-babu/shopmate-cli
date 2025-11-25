@@ -49,7 +49,7 @@ namespace Shopmate.Services
             Console.WriteLine($"Name     \t{Auth.loggedInUser.FullName}");
             Console.WriteLine($"Username \t{Auth.loggedInUser.UserName}");
             Console.WriteLine();
-            Console.WriteLine("0. Back");
+            Console.WriteLine("0. Back to home page");
             int choice;
             Console.Write("=> ");
             choice = Convert.ToInt32(Console.ReadLine());
