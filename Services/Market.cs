@@ -54,6 +54,7 @@ namespace Shopmate.Services
             string choice = Console.ReadLine().ToLower();
             if (choice != "c")
             {
+                Console.Write("Product quantity: ");
                 int quantity = Convert.ToInt32(Console.ReadLine());
                 Product product = Products.GetProductById(Convert.ToInt32(choice));
                 Shopmate.Models.Carts.Add(product.Owner, Auth.loggedInUser.UserName, quantity, product);
