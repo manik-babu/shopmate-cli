@@ -22,6 +22,9 @@ namespace Shopmate.Services
                     ShopMateUtils.PageName("Products");
                     MarketProducts(0, 5);
                     break;
+                case 2:
+                    ShowCartItems();
+                    break;
 
             }
         }
@@ -65,6 +68,22 @@ namespace Shopmate.Services
             }
             MarketProducts(start, end);
         }
+        public static void ShowCartItems()
+        {
+            ShopMateUtils.PageName("Carts");
+            Shopmate.Models.Carts.GetByCustomer(Auth.loggedInUser.UserName);
 
+            Console.WriteLine("1. Remove cart");
+            Console.WriteLine("2. Order now");
+            Console.WriteLine("0. Back");
+
+            int choice = ShopMateUtils.ReadChoice(new int[] { 0, 1, 2 });
+            switch (choice)
+            {
+                case 0:
+                    Interface();
+                    break;
+            }
+        }
     }
 }

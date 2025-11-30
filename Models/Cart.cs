@@ -39,7 +39,7 @@ namespace Shopmate.Models
                 {
                     Console.WriteLine($"Product ID: {carts[i].product.ProductId}\t{carts[i].product.ShopName}");
                     Console.WriteLine("Product Title: " + carts[i].product.Title);
-                    Console.WriteLine("Product Quantity: ", carts[i].Quantity);
+                    Console.WriteLine("Product Quantity: " + carts[i].Quantity);
                     Console.WriteLine("---------------------------------------------------");
                 }
             }
