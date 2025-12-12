@@ -4,16 +4,25 @@ namespace Shopmate.Utils
     {
         public static int ReadChoice(int[] options)
         {
-            int choice;
-            Console.Write("Choose: ");
-            choice = Convert.ToInt32(Console.ReadLine());
-            while (!Array.Exists(options, e => e == choice))
+            try
             {
-                Console.WriteLine("Invalid choice. Select a valid option from the menu.");
+                int choice;
                 Console.Write("Choose: ");
                 choice = Convert.ToInt32(Console.ReadLine());
+                while (!Array.Exists(options, e => e == choice))
+                {
+                    Console.WriteLine("Invalid choice. Select a valid option from the menu.");
+                    Console.Write("Choose: ");
+                    choice = Convert.ToInt32(Console.ReadLine());
+                }
+                return choice;
             }
-            return choice;
+            catch (Exception)
+            {
+                return ReadChoice(options);
+            }
+
+
         }
         public static void PageName(string name)
         {

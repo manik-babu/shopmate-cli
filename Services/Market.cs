@@ -26,6 +26,9 @@ namespace Shopmate.Services
                 case 2:
                     ShowCartItems();
                     break;
+                case 3:
+                    MyOrders();
+                    break;
 
             }
         }
@@ -124,7 +127,7 @@ namespace Shopmate.Services
 
             string address = $"{division}, {district}, {upazila}, {village}";
             Console.WriteLine("Full address: " + address);
-            Console.WriteLine("Place order?(Y/n): ");
+            Console.Write("Place order?(Y/n): ");
 
             string choice = Console.ReadLine().ToLower();
             if (choice != "n")
@@ -136,5 +139,16 @@ namespace Shopmate.Services
 
 
         }
+        public static void MyOrders()
+        {
+            ShopMateUtils.PageName("My Orders");
+            Orders.GetCustomerOrders(Auth.loggedInUser.UserName);
+
+            Console.WriteLine("0. Back to home");
+            Console.Write("Choose: ");
+            string choice = Console.ReadLine();
+            MarketHome();
+        }
+
     }
 }

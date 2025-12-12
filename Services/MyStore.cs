@@ -25,6 +25,9 @@ namespace Shopmate.Services
                 case 2:
                     ProductAdd();
                     break;
+                case 3:
+                    MyOrders();
+                    break;
             }
         }
         public static void ProductAdd()
@@ -81,11 +84,18 @@ namespace Shopmate.Services
             Shopmate.Models.Products.ShowByUsername(Auth.loggedInUser.UserName);
 
             Console.WriteLine("0. Go back to my store");
-
-            int choice = ShopMateUtils.ReadChoice(new int[] { 0 });
+            Console.Write("Choose: ");
+            Console.ReadLine();
 
             StoreHome();
         }
-
+        public static void MyOrders()
+        {
+            Orders.GetStoreOrder(Auth.loggedInUser.UserName);
+            Console.WriteLine("0. Back to home");
+            Console.Write("Choose: ");
+            Console.ReadLine();
+            StoreHome();
+        }
     }
 }

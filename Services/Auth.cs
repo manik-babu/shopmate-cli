@@ -1,4 +1,3 @@
-using System.Threading;
 using Shopmate.Models;
 using Shopmate.Utils;
 
@@ -10,23 +9,31 @@ namespace Shopmate.Services
 
         public static void Authinticate()
         {
-            ShopMateUtils.PageName("Authenthication");
-            Console.WriteLine("1. Login\n2. Signup");
-            Console.WriteLine("Choose one (1/2)");
-            Console.Write("Choose: ");
-            int input;
-            do
+            try
             {
-                input = Convert.ToInt16(Console.ReadLine());
+                ShopMateUtils.PageName("Authenthication");
+                Console.WriteLine("1. Login\n2. Signup");
+                Console.WriteLine("Choose one (1/2)");
+                Console.Write("Choose: ");
+                int input;
+                do
+                {
+                    input = Convert.ToInt16(Console.ReadLine());
+                }
+                while (input != 1 && input != 2);
+                if (input == 1)
+                {
+                    Login();
+                }
+                else
+                {
+                    Signup();
+                }
             }
-            while (input != 1 && input != 2);
-            if (input == 1)
+            catch (Exception)
             {
-                Login();
-            }
-            else
-            {
-                Signup();
+                Console.WriteLine("Something went wrong! Please log in again");
+                Authinticate();
             }
         }
         public static void Login()
@@ -60,7 +67,7 @@ namespace Shopmate.Services
 
             Console.Write("Full name: ");
             string fullName = Console.ReadLine();
-            Console.WriteLine("Shop name: ");
+            Console.Write("Shop name: ");
             string shopName = Console.ReadLine();
 
             Console.Write("Create a password: ");
