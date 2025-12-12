@@ -26,17 +26,85 @@ namespace Shopmate.Models
         }
         public static void GetByCustomer(string customer)
         {
+            bool cartFound = false;
             Console.WriteLine("---------------------------------------------------");
             for (int i = CartCount - 1; i >= 0; i--)
             {
                 if (carts[i].Customer == customer)
                 {
-                    Console.WriteLine($"Product ID: {carts[i].product.ProductId}\t{carts[i].product.ShopName}");
-                    Console.WriteLine("Product Title: " + carts[i].product.Title);
-                    Console.WriteLine("Product Quantity: " + carts[i].Quantity);
+                    Console.WriteLine($"Cart ID: {carts[i].CartId}");
+                    Console.WriteLine($"ID: {carts[i].product.ProductId}\t{carts[i].product.ShopName}({carts[i].product.Owner})");
+                    Console.WriteLine("Title: " + carts[i].product.Title);
+                    Console.WriteLine("Quantity: " + carts[i].Quantity);
+                    Console.WriteLine("Price: " + carts[i].product.Price);
                     Console.WriteLine("---------------------------------------------------");
+                    cartFound = true;
                 }
             }
+            if (!cartFound)
+            {
+                Console.WriteLine("No cart found!");
+            }
         }
+        public static void RemoveCart(string customer, int cartId)
+        {
+            if (cartId > 0 && cartId < CartCount && carts[cartId - 1].Customer == customer)
+            {
+                carts[cartId - 1].Customer = "-";
+            }
+            else
+            {
+                Console.WriteLine("Something went wrong!");
+            }
+        }
+        public static void ShowPriceDetails(string customer)
+        {
+            bool cartFound = false;
+            int total = 0;
+            for (int i = CartCount - 1; i >= 0; i--)
+            {
+                Cart cart = carts[i];
+                if (cart.Customer == customer)
+                {
+                    Console.WriteLine($"{cart.product.Price}x{cart.Quantity}\t\t{cart.product.Title}");
+                    total += cart.product.Price * cart.Quantity;
+                    cartFound = true;
+                }
+            }
+            if (cartFound)
+            {
+                Console.WriteLine("60\t\tDelivery charge");
+                total += 60;
+                Console.WriteLine("-------------------------------------------------");
+                Console.WriteLine(total);
+                Console.WriteLine("Total = " + total);
+
+            }
+
+        }
+        public static void AddOrder(string address, string customer)
+        {
+            bool cartFound = false;
+            for (int i = 0; i < CartCount; i++)
+            {
+                Cart cart = carts[i];
+                if (cart.Customer == customer)
+                {
+                    Orders.add(customer, cart.product.Owner, cart.Quantity, cart.product, address);
+                    cart.Customer = "-";
+                    cartFound = true;
+                }
+            }
+            if (cartFound)
+            {
+                Console.WriteLine("Order successfull!");
+            }
+            else
+            {
+                Console.WriteLine("No cart found! order failed!");
+            }
+        }
+
+
     }
 }

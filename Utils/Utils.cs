@@ -5,32 +5,15 @@ namespace Shopmate.Utils
         public static int ReadChoice(int[] options)
         {
             int choice;
-            Console.Write("=> ");
+            Console.Write("Choose: ");
             choice = Convert.ToInt32(Console.ReadLine());
             while (!Array.Exists(options, e => e == choice))
             {
                 Console.WriteLine("Invalid choice. Select a valid option from the menu.");
-                Console.Write("=> ");
+                Console.Write("Choose: ");
                 choice = Convert.ToInt32(Console.ReadLine());
             }
             return choice;
-        }
-
-        public static void Loading(string topic, int time)
-        {
-            Console.Write(topic);
-            Thread.Sleep(time / 4);
-            Console.Write(".");
-            Thread.Sleep(time / 4);
-            Console.Write(".");
-            Thread.Sleep(time / 4);
-            Console.Write(".");
-            Thread.Sleep(time / 4);
-            Console.WriteLine();
-        }
-        public static void Loading(int time)
-        {
-            Thread.Sleep(time);
         }
         public static void PageName(string name)
         {

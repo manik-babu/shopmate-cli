@@ -47,7 +47,7 @@ namespace Shopmate.Models
                 return;
             }
             Console.WriteLine("---------------------------------------------");
-            for (int i = start; i < end && i < ProductCount; i++)
+            for (int i = start; i <= end && i < ProductCount; i++)
             {
 
                 products[i].Display();

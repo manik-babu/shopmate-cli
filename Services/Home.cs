@@ -12,7 +12,6 @@ namespace Shopmate.Services
             Console.WriteLine("3. Market place");
             Console.WriteLine("0. Logout");
 
-            Console.Write("Choose: ");
             int choice = ShopMateUtils.ReadChoice(new int[] { 0, 1, 2, 3 });
 
             switch (choice)

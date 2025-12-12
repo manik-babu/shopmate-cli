@@ -61,7 +61,7 @@ namespace Shopmate.Services
                 Console.Write("Product quantity: ");
                 int quantity = Convert.ToInt32(Console.ReadLine());
                 Product product = Products.GetProductById(Convert.ToInt32(choice));
-                Shopmate.Models.Carts.Add(product.Owner, Auth.loggedInUser.UserName, quantity, product);
+                Shopmate.Models.Carts.Add(Auth.loggedInUser.UserName, quantity, product);
 
                 Console.WriteLine("Product added to the cart!");
 
@@ -73,10 +73,11 @@ namespace Shopmate.Services
         {
             ShopMateUtils.PageName("Carts");
 
-            Shopmate.Models.Carts.GetByCustomer(Auth.loggedInUser.UserName);
+            Carts.GetByCustomer(Auth.loggedInUser.UserName);
+            Carts.ShowPriceDetails(Auth.loggedInUser.UserName);
 
             Console.WriteLine("1. Remove cart");
-            Console.WriteLine("2. Order now");
+            Console.WriteLine("2. Place order");
             Console.WriteLine("0. Back");
 
             int choice = ShopMateUtils.ReadChoice(new int[] { 0, 1, 2 });
@@ -85,7 +86,55 @@ namespace Shopmate.Services
                 case 0:
                     MarketHome();
                     break;
+                case 1:
+                    RemoveCartItems();
+                    break;
+                case 2:
+                    PlaceOrder();
+                    break;
             }
+        }
+        public static void RemoveCartItems()
+        {
+            Console.Write("Enter Cart ID to remove (or 'C' to Cancel): ");
+            string choice = Console.ReadLine().ToLower();
+            if (choice != "c")
+            {
+                int cartId = Convert.ToInt32(choice);
+                Carts.RemoveCart(Auth.loggedInUser.UserName, cartId);
+
+                Console.WriteLine("Cart removed!");
+                ShowCartItems();
+            }
+            ShowCartItems();
+        }
+        public static void PlaceOrder()
+        {
+            ShopMateUtils.PageName("Place order");
+            Console.WriteLine("Please provide your address");
+
+            Console.Write("Division: ");
+            string division = Console.ReadLine();
+            Console.Write("District: ");
+            string district = Console.ReadLine();
+            Console.Write("Upazila: ");
+            string upazila = Console.ReadLine();
+            Console.Write("Village: ");
+            string village = Console.ReadLine();
+
+            string address = $"{division}, {district}, {upazila}, {village}";
+            Console.WriteLine("Full address: " + address);
+            Console.WriteLine("Place order?(Y/n): ");
+
+            string choice = Console.ReadLine().ToLower();
+            if (choice != "n")
+            {
+                Carts.AddOrder(address, Auth.loggedInUser.UserName);
+            }
+
+            MarketHome();
+
+
         }
     }
 }

@@ -6,14 +6,19 @@ namespace Shopmate.Models
         public int OrderId;
         public string OrderedBy;
         public string OrderedTo;
+        public int Quantity;
         public Product Product;
+        public string Address;
 
-        public Order(int orderId, string orderedBy, string orderedTo, Product product)
+
+        public Order(int orderId, string orderedBy, string orderedTo, int quantity, Product product, string address)
         {
             this.OrderId = orderId;
             this.OrderedBy = orderedBy;
             this.OrderedTo = orderedTo;
+            this.Quantity = quantity;
             this.Product = product;
+            this.Address = address;
         }
         public void Show()
         {
@@ -26,9 +31,9 @@ namespace Shopmate.Models
     {
         private static Order[] orders = new Order[200];
         private static int OrderCount = 0;
-        public static void add(string orderedBy, string orderedTo, Product product)
+        public static void add(string orderedBy, string orderedTo, int quantity, Product product, string address)
         {
-            orders[OrderCount] = new Order(++OrderCount, orderedBy, orderedTo, product);
+            orders[OrderCount] = new Order(++OrderCount, orderedBy, orderedTo, quantity, product, address);
         }
         public static void GetStoreOrder(string userName)
         {
