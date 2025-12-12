@@ -4,9 +4,10 @@ namespace Shopmate.Services
 {
     static class Market
     {
-        public static void Interface()
+        public static void MarketHome()
         {
             ShopMateUtils.PageName("Market");
+
             Console.WriteLine("1. Products");
             Console.WriteLine("2. My carts");
             Console.WriteLine("3. My orders");
@@ -30,7 +31,7 @@ namespace Shopmate.Services
         }
         public static void MarketProducts(int start, int end)
         {
-            Console.WriteLine("---------------------------------------------");
+
             Shopmate.Models.Products.ShowProducts(start, end);
             Console.WriteLine("1. See more");
             Console.WriteLine("2. Add to cart");
@@ -40,7 +41,7 @@ namespace Shopmate.Services
             switch (choice)
             {
                 case 0:
-                    Interface();
+                    MarketHome();
                     break;
                 case 1:
                     MarketProducts(end + 1, end + 5);
@@ -61,9 +62,9 @@ namespace Shopmate.Services
                 int quantity = Convert.ToInt32(Console.ReadLine());
                 Product product = Products.GetProductById(Convert.ToInt32(choice));
                 Shopmate.Models.Carts.Add(product.Owner, Auth.loggedInUser.UserName, quantity, product);
-                ShopMateUtils.Loading("Adding to cart", 1000);
+
                 Console.WriteLine("Product added to the cart!");
-                ShopMateUtils.Loading(500);
+
 
             }
             MarketProducts(start, end);
@@ -71,6 +72,7 @@ namespace Shopmate.Services
         public static void ShowCartItems()
         {
             ShopMateUtils.PageName("Carts");
+
             Shopmate.Models.Carts.GetByCustomer(Auth.loggedInUser.UserName);
 
             Console.WriteLine("1. Remove cart");
@@ -81,7 +83,7 @@ namespace Shopmate.Services
             switch (choice)
             {
                 case 0:
-                    Interface();
+                    MarketHome();
                     break;
             }
         }

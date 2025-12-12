@@ -9,22 +9,17 @@ namespace Shopmate.Models
 {
     class User
     {
-        public string FullName { get; set; }
-        public string UserName { get; set; }
+        public string FullName;
+        public string UserName;
         private string Password;
-        public string ShopName { get; set; }
+        public string ShopName;
 
-        public User(string fullname, string username, string password)
+        public User(string fullname, string shopName, string username, string password)
         {
             this.FullName = fullname;
+            this.ShopName = shopName;
             this.UserName = username;
             this.Password = password;
-            this.ShopName = "-";
-        }
-        public void Details()
-        {
-            Console.WriteLine("Fullname: " + FullName);
-            Console.WriteLine("Username: " + UserName);
         }
         public bool PasswordVarify(string password)
         {
@@ -35,9 +30,9 @@ namespace Shopmate.Models
     {
         private static User[] users = new User[100];
         private static int UserCount = 0;
-        public static void Add(string fullName, string userName, string password)
+        public static void Add(string fullName, string shopName, string userName, string password)
         {
-            users[UserCount++] = new User(fullName, userName, password);
+            users[UserCount++] = new User(fullName, shopName, userName, password);
         }
         public static bool Exists(string username)
         {
@@ -72,7 +67,7 @@ namespace Shopmate.Models
                     return user;
                 }
             }
-            return new User("null", "null", "null");
+            return new User("null", "null", "null", "null");
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Shopmate.Services
 {
     static class Auth
     {
-        public static User loggedInUser { get; set; }
+        public static User loggedInUser;
 
         public static void Authinticate()
         {
@@ -33,28 +33,20 @@ namespace Shopmate.Services
         {
             ShopMateUtils.PageName("Login");
             Console.WriteLine("Welcome back!");
-            ShopMateUtils.Loading(500);
             Console.WriteLine("Please enter your details to login.");
-            ShopMateUtils.Loading(1000);
             Console.Write("Username: ");
             string userName = Console.ReadLine();
             Console.Write("Password: ");
             string password = Console.ReadLine();
-            ShopMateUtils.Loading("Logging in", 1500);
             if (Users.Exists(userName, password))
             {
                 loggedInUser = Users.Get(userName);
                 Console.WriteLine("Login Successfull!");
-                ShopMateUtils.Loading(500);
-                Console.WriteLine($"Welcome back {loggedInUser.FullName}");
-                ShopMateUtils.Loading(1000);
                 App.Home();
             }
             else
             {
-                ShopMateUtils.Loading(500);
                 Console.WriteLine("Username or password incorrect!");
-                ShopMateUtils.Loading(1000);
                 Authinticate();
             }
         }
@@ -62,30 +54,31 @@ namespace Shopmate.Services
         public static void Signup()
         {
             ShopMateUtils.PageName("Sign up");
+
             Console.WriteLine("Let's get you set up!");
-            ShopMateUtils.Loading(500);
             Console.WriteLine("Please enter the following details to create an account.");
-            ShopMateUtils.Loading(1000);
+
             Console.Write("Full name: ");
             string fullName = Console.ReadLine();
+            Console.WriteLine("Shop name: ");
+            string shopName = Console.ReadLine();
+
             Console.Write("Create a password: ");
             string password = Console.ReadLine();
+
             Console.Write("Create an username: ");
             string userName;
             userName = Console.ReadLine();
             while (Users.Exists(userName))
             {
                 Console.WriteLine("Username already exist! Please choose another.");
-                ShopMateUtils.Loading(500);
                 Console.Write("Create an username: ");
                 userName = Console.ReadLine();
             }
-            Users.Add(fullName, userName, password);
-            ShopMateUtils.Loading("Creating account", 1500);
+
+            Users.Add(fullName, shopName, userName, password);
             Console.WriteLine("Signup successfull!");
-            ShopMateUtils.Loading(500);
             Console.WriteLine("Please login with your username and password");
-            ShopMateUtils.Loading(1000);
             Authinticate();
         }
     }

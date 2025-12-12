@@ -1,22 +1,15 @@
 namespace Shopmate.Models
 {
-    interface ICart
+    class Cart
     {
-        public string ShopOwner { get; set; }
-        public string Customer { get; set; }
-        public int Quantity { get; set; }
-        public Product product { get; set; }
-    }
-    class Cart : ICart
-    {
-        public string ShopOwner { get; set; }
-        public string Customer { get; set; }
-        public int Quantity { get; set; }
-        public Product product { get; set; }
+        public int CartId;
+        public string Customer;
+        public int Quantity;
+        public Product product;
 
-        public Cart(string shopOwner, string customer, int quantity, Product product)
+        public Cart(int cartId, string customer, int quantity, Product product)
         {
-            this.ShopOwner = shopOwner;
+            this.CartId = cartId;
             this.Customer = customer;
             this.Quantity = quantity;
             this.product = product;
@@ -26,9 +19,10 @@ namespace Shopmate.Models
     {
         public static Cart[] carts = new Cart[100];
         public static int CartCount = 0;
-        public static void Add(string shopOwner, string customer, int quantity, Product product)
+        public static void Add(string customer, int quantity, Product product)
         {
-            carts[CartCount++] = new Cart(shopOwner, customer, quantity, product);
+            carts[CartCount] = new Cart(CartCount + 1, customer, quantity, product);
+            CartCount++;
         }
         public static void GetByCustomer(string customer)
         {

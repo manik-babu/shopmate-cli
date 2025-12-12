@@ -6,12 +6,12 @@ namespace Shopmate.Models
 {
     class Product
     {
-        public int ProductId { get; set; }
-        public string Owner { get; set; }
-        public string ShopName { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public int Price { get; set; }
+        public int ProductId;
+        public string Owner;
+        public string ShopName;
+        public string Title;
+        public string Description;
+        public int Price;
 
         public Product(int productId, string owner, string shopName, string title, string description, int price)
         {
@@ -21,16 +21,6 @@ namespace Shopmate.Models
             this.Title = title;
             this.Description = description;
             this.Price = price;
-        }
-
-        public void Details()
-        {
-            Console.WriteLine("Product id: " + ProductId);
-            Console.WriteLine("Owner Name: " + Owner);
-            Console.WriteLine("Shop Name: " + ShopName);
-            Console.WriteLine("Title: " + Title);
-            Console.WriteLine("Description: " + Description);
-            Console.WriteLine("Price: " + Price);
         }
         public void Display()
         {
@@ -56,9 +46,10 @@ namespace Shopmate.Models
                 Console.WriteLine("No more product available in the market!!");
                 return;
             }
+            Console.WriteLine("---------------------------------------------");
             for (int i = start; i < end && i < ProductCount; i++)
             {
-                if (products[i].ProductId == -1) continue;
+
                 products[i].Display();
                 Console.WriteLine("---------------------------------------------");
             }
@@ -81,26 +72,6 @@ namespace Shopmate.Models
         public static Product GetProductById(int id)
         {
             return products[id - 1];
-        }
-        public static bool Remove(int id, string userName)
-        {
-            id--;
-            if (ProductCount < id)
-            {
-                return false;
-            }
-
-            if (products[id].Owner == userName)
-            {
-                products[id].ProductId = -1;
-                products[id].Owner = "null";
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
         }
     }
 }

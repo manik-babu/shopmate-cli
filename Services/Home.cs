@@ -6,58 +6,41 @@ namespace Shopmate.Services
         public static void Home()
         {
             ShopMateUtils.PageName("Home");
+
             Console.WriteLine("1. Profile");
             Console.WriteLine("2. My store");
             Console.WriteLine("3. Market place");
             Console.WriteLine("0. Logout");
-            int choice;
-            Console.Write("=> ");
-            choice = Convert.ToInt32(Console.ReadLine());
-            while (choice != 0 && choice != 1 && choice != 2 && choice != 3)
-            {
-                Console.WriteLine("Invalid option!");
-                Console.Write("=> ");
-                choice = Convert.ToInt32(Console.ReadLine());
-            }
 
-            if (choice == 0)
-            {
-                Auth.Authinticate();
-            }
-            else if (choice == 1)
-            {
-                Profile();
-            }
-            else if (choice == 2)
-            {
-                Store.Interface();
-            }
-            else if (choice == 3)
-            {
-                Market.Interface();
-            }
+            Console.Write("Choose: ");
+            int choice = ShopMateUtils.ReadChoice(new int[] { 0, 1, 2, 3 });
 
+            switch (choice)
+            {
+                case 0:
+                    Auth.Authinticate();
+                    break;
+                case 1:
+                    Profile();
+                    break;
+                case 2:
+                    Store.StoreHome();
+                    break;
+                case 3:
+                    Market.MarketHome();
+                    break;
+            }
         }
         public static void Profile()
         {
-            Console.WriteLine("---------------------------------");
-            Console.WriteLine($"\tProfile");
-            Console.WriteLine("---------------------------------");
-            string shopName = Auth.loggedInUser.ShopName == "-" ? "You'r not a seller!" : Auth.loggedInUser.ShopName;
-            Console.WriteLine($"Shop Name\t{shopName}");
+            ShopMateUtils.PageName("Profile");
+            Console.WriteLine($"Shop Name\t{Auth.loggedInUser.ShopName}");
             Console.WriteLine($"Name     \t{Auth.loggedInUser.FullName}");
             Console.WriteLine($"Username \t{Auth.loggedInUser.UserName}");
             Console.WriteLine();
+
             Console.WriteLine("0. Back to home page");
-            int choice;
-            Console.Write("=> ");
-            choice = Convert.ToInt32(Console.ReadLine());
-            while (choice != 0)
-            {
-                Console.WriteLine("Invalid option! Please enter correct option.");
-                Console.Write("=> ");
-                choice = Convert.ToInt32(Console.ReadLine());
-            }
+            int choice = ShopMateUtils.ReadChoice(new int[] { 0 });
             Home();
         }
     }
