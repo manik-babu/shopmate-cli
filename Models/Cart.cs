@@ -1,12 +1,14 @@
 namespace Shopmate.Models
 {
-    class Cart
+    abstract class CartSchema
     {
         public int CartId;
         public string Customer;
         public int Quantity;
         public Product product;
-
+    }
+    class Cart : CartSchema
+    {
         public Cart(int cartId, string customer, int quantity, Product product)
         {
             this.CartId = cartId;
@@ -15,7 +17,17 @@ namespace Shopmate.Models
             this.product = product;
         }
     }
-    static class Carts
+
+    interface ICarts
+    {
+        public abstract static void Add(string customer, int quantity, Product product);
+        public abstract static void GetByCustomer(string customer);
+        public abstract static void RemoveCart(string customer, int cartId);
+        public abstract static void ShowPriceDetails(string customer);
+        public abstract static void AddOrder(string address, string customer);
+    }
+
+    class Carts : ICarts
     {
         public static Cart[] carts = new Cart[100];
         public static int CartCount = 0;

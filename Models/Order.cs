@@ -1,7 +1,7 @@
 using System;
 namespace Shopmate.Models
 {
-    class Order
+    abstract class OrderSchema
     {
         public int OrderId;
         public string OrderedBy;
@@ -9,8 +9,9 @@ namespace Shopmate.Models
         public int Quantity;
         public Product Product;
         public string Address;
-
-
+    }
+    class Order : OrderSchema
+    {
         public Order(int orderId, string orderedBy, string orderedTo, int quantity, Product product, string address)
         {
             this.OrderId = orderId;
@@ -21,7 +22,14 @@ namespace Shopmate.Models
             this.Address = address;
         }
     }
-    static class Orders
+
+    interface IOrders
+    {
+        public abstract static void add(string orderedBy, string orderedTo, int quantity, Product product, string address);
+        public abstract static void GetStoreOrder(string userName);
+        public abstract static void GetCustomerOrders(string userName);
+    }
+    class Orders : IOrders
     {
         private static Order[] orders = new Order[200];
         private static int OrderCount = 0;
