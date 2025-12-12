@@ -1,0 +1,15 @@
+/home/manik/Projects/shopmate-cli/bin/Debug/net10.0/shopmate-cli
+/home/manik/Projects/shopmate-cli/bin/Debug/net10.0/shopmate-cli.deps.json
+/home/manik/Projects/shopmate-cli/bin/Debug/net10.0/shopmate-cli.runtimeconfig.json
+/home/manik/Projects/shopmate-cli/bin/Debug/net10.0/shopmate-cli.dll
+/home/manik/Projects/shopmate-cli/bin/Debug/net10.0/shopmate-cli.pdb
+/home/manik/Projects/shopmate-cli/obj/Debug/net10.0/shopmate-cli.GeneratedMSBuildEditorConfig.editorconfig
+/home/manik/Projects/shopmate-cli/obj/Debug/net10.0/shopmate-cli.AssemblyInfoInputs.cache
+/home/manik/Projects/shopmate-cli/obj/Debug/net10.0/shopmate-cli.AssemblyInfo.cs
+/home/manik/Projects/shopmate-cli/obj/Debug/net10.0/shopmate-cli.csproj.CoreCompileInputs.cache
+/home/manik/Projects/shopmate-cli/obj/Debug/net10.0/shopmate-cli.sourcelink.json
+/home/manik/Projects/shopmate-cli/obj/Debug/net10.0/shopmate-cli.dll
+/home/manik/Projects/shopmate-cli/obj/Debug/net10.0/refint/shopmate-cli.dll
+/home/manik/Projects/shopmate-cli/obj/Debug/net10.0/shopmate-cli.pdb
+/home/manik/Projects/shopmate-cli/obj/Debug/net10.0/shopmate-cli.genruntimeconfig.cache
+/home/manik/Projects/shopmate-cli/obj/Debug/net10.0/ref/shopmate-cli.dll

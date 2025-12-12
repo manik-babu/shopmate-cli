@@ -3,54 +3,78 @@ namespace Shopmate.Models
 {
     class Order
     {
-        public int OrderId { get; set; }
-        public string OrderedBy { get; set; }
-        public string OrderedTo { get; set; }
-        public string Status { get; set; }  // Status would be Pending, Confirmed
-        public Product Product { get; set; }
+        public int OrderId;
+        public string OrderedBy;
+        public string OrderedTo;
+        public int Quantity;
+        public Product Product;
+        public string Address;
 
-        public Order(int orderId, string orderedBy, string orderedTo, Product product)
+
+        public Order(int orderId, string orderedBy, string orderedTo, int quantity, Product product, string address)
         {
             this.OrderId = orderId;
             this.OrderedBy = orderedBy;
             this.OrderedTo = orderedTo;
-            this.Status = "Pending";
+            this.Quantity = quantity;
             this.Product = product;
-        }
-        public void Show()
-        {
-            Console.WriteLine("Order id: " + OrderId);
-            Console.WriteLine("Status: " + Status);
-            Console.WriteLine($"Ordered by {OrderedBy} and ordered to {OrderedTo}");
-            Console.WriteLine("Product: " + Product.Title);
+            this.Address = address;
         }
     }
     static class Orders
     {
         private static Order[] orders = new Order[200];
         private static int OrderCount = 0;
-        public static void add(string orderedBy, string orderedTo, Product product)
+        public static void add(string orderedBy, string orderedTo, int quantity, Product product, string address)
         {
-            orders[OrderCount] = new Order(++OrderCount, orderedBy, orderedTo, product);
+            orders[OrderCount] = new Order(++OrderCount, orderedBy, orderedTo, quantity, product, address);
         }
-        public static void GetStoreOrder(string userName, string status)
+        public static void GetStoreOrder(string userName)
         {
-            foreach (Order order in orders)
+            bool orderFound = false;
+            Console.WriteLine("----------------------------------------------------------------");
+            for (int i = OrderCount - 1; i >= 0; i--)
             {
-                if (order.OrderedTo == userName && order.Status == status)
+                Order order = orders[i];
+                if (order.OrderedTo == userName)
                 {
-                    order.Show();
+                    Console.WriteLine($"Ordered By: \t\t{order.OrderedBy}");
+                    Console.WriteLine($"Product ID: \t\t{order.Product.ProductId}");
+                    Console.WriteLine($"Product Title: \t\t{order.Product.Title}");
+                    Console.WriteLine($"Product Price: \t\t{order.Product.Price}");
+                    Console.WriteLine($"Product Quantity: \t{order.Quantity}");
+                    Console.WriteLine($"Order Address: \t\t{order.Address}");
+                    Console.WriteLine("----------------------------------------------------------------");
+                    orderFound = true;
                 }
             }
-        }
-        public static void GetCustomerOrders(string userName, string status)
-        {
-            foreach (Order order in orders)
+            if (!orderFound)
             {
-                if (order.OrderedBy == userName && order.Status == status)
+                Console.WriteLine("No order found!");
+            }
+        }
+        public static void GetCustomerOrders(string userName)
+        {
+            bool orderFound = false;
+            Console.WriteLine("----------------------------------------------------------------");
+            for (int i = OrderCount - 1; i >= 0; i--)
+            {
+                Order order = orders[i];
+                if (order.OrderedBy == userName)
                 {
-                    order.Show();
+                    Console.WriteLine($"Shop Name: \t\t{order.Product.ShopName}({order.Product.Owner})");
+                    Console.WriteLine($"Product ID: \t\t{order.Product.ProductId}");
+                    Console.WriteLine($"Product Title: \t\t{order.Product.Title}");
+                    Console.WriteLine($"Product Price: \t\t{order.Product.Price}");
+                    Console.WriteLine($"Product Quantity: \t{order.Quantity}");
+                    Console.WriteLine($"Order Address: \t\t{order.Address}");
+                    Console.WriteLine("----------------------------------------------------------------");
+                    orderFound = true;
                 }
+            }
+            if (!orderFound)
+            {
+                Console.WriteLine("No order found!");
             }
         }
     }
