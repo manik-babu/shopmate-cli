@@ -1,19 +1,26 @@
-// Create a database management system for manage user in our market. 
-// We can perform user add, check rather a user exists or not in the database
-// and also checking a user exits with a specific username and password.
-// Get a user with a specific username
-// Get all the user present in the database
+/*
+- Create a database management system for manage user in our market. 
+- We can perform user add, check rather a user exists or not in the database
+- and also checking a user exits with a specific username and password.
+- Get a user with a specific username
+- Get all the user present in the database
+*/
 
 using System;
 namespace Shopmate.Models
 {
-    class User
+    // --------------- Abstraction ------------------
+    abstract class UserSchema
     {
         public string FullName;
         public string UserName;
-        private string Password;
+        protected string Password;
         public string ShopName;
+        public abstract bool PasswordVarify(string password);
 
+    }
+    class User : UserSchema
+    {
         public User(string fullname, string shopName, string username, string password)
         {
             this.FullName = fullname;
@@ -21,12 +28,21 @@ namespace Shopmate.Models
             this.UserName = username;
             this.Password = password;
         }
-        public bool PasswordVarify(string password)
+        public override bool PasswordVarify(string password)
         {
             return this.Password == password;
         }
     }
-    static class Users
+
+    interface IUsers
+    {
+        public abstract static void Add(string fullName, string shopName, string userName, string password);
+        public abstract static bool Exists(string username);
+        public abstract static bool Exists(string username, string password);
+        public abstract static User Get(string username);
+    }
+
+    class Users : IUsers
     {
         private static User[] users = new User[100];
         private static int UserCount = 0;

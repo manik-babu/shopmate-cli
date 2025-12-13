@@ -4,7 +4,7 @@
 using System;
 namespace Shopmate.Models
 {
-    class Product
+    abstract class ProductSchema
     {
         public int ProductId;
         public string Owner;
@@ -12,7 +12,10 @@ namespace Shopmate.Models
         public string Title;
         public string Description;
         public int Price;
-
+        public abstract void Display();
+    }
+    class Product : ProductSchema
+    {
         public Product(int productId, string owner, string shopName, string title, string description, int price)
         {
             this.ProductId = productId;
@@ -22,7 +25,7 @@ namespace Shopmate.Models
             this.Description = description;
             this.Price = price;
         }
-        public void Display()
+        public override void Display()
         {
             Console.WriteLine($"Product ID: {ProductId}\t{ShopName}({Owner})");
             Console.WriteLine("Title: " + Title);
@@ -31,7 +34,16 @@ namespace Shopmate.Models
         }
 
     }
-    static class Products
+
+    interface IProducts
+    {
+        public abstract static void Add(string owner, string shopName, string title, string description, int price);
+        public abstract static void ShowProducts(int start, int end);
+        public abstract static void ShowByUsername(string userName);
+        public abstract static Product GetProductById(int id);
+    }
+
+    class Products : IProducts
     {
         private static Product[] products = new Product[1000];
         private static int ProductCount = 0;

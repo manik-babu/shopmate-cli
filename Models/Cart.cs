@@ -1,12 +1,14 @@
 namespace Shopmate.Models
 {
-    class Cart
+    abstract class CartSchema
     {
         public int CartId;
         public string Customer;
         public int Quantity;
         public Product product;
-
+    }
+    class Cart : CartSchema
+    {
         public Cart(int cartId, string customer, int quantity, Product product)
         {
             this.CartId = cartId;
@@ -15,7 +17,17 @@ namespace Shopmate.Models
             this.product = product;
         }
     }
-    static class Carts
+
+    interface ICarts
+    {
+        public abstract static void Add(string customer, int quantity, Product product);
+        public abstract static void ShowCartItems(string customer);
+        public abstract static void RemoveCartItem(string customer, int cartId);
+        public abstract static void ShowPriceDetails(string customer);
+        public abstract static void PlaceOrder(string address, string customer);
+    }
+
+    class Carts : ICarts
     {
         public static Cart[] carts = new Cart[100];
         public static int CartCount = 0;
@@ -24,7 +36,7 @@ namespace Shopmate.Models
             carts[CartCount] = new Cart(CartCount + 1, customer, quantity, product);
             CartCount++;
         }
-        public static void GetByCustomer(string customer)
+        public static void ShowCartItems(string customer)
         {
             bool cartFound = false;
             Console.WriteLine("---------------------------------------------------");
@@ -46,7 +58,7 @@ namespace Shopmate.Models
                 Console.WriteLine("No cart found!");
             }
         }
-        public static void RemoveCart(string customer, int cartId)
+        public static void RemoveCartItem(string customer, int cartId)
         {
             if (cartId > 0 && cartId < CartCount && carts[cartId - 1].Customer == customer)
             {
@@ -82,7 +94,7 @@ namespace Shopmate.Models
             }
 
         }
-        public static void AddOrder(string address, string customer)
+        public static void PlaceOrder(string address, string customer)
         {
             bool cartFound = false;
             for (int i = 0; i < CartCount; i++)
