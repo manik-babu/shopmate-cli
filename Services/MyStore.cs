@@ -7,6 +7,7 @@ namespace Shopmate.Services
         public static void StoreHome()
         {
             ShopMateUtils.PageName("My Store");
+
             Console.WriteLine("1. My products");
             Console.WriteLine("2. Add products");
             Console.WriteLine("3. Orders");
@@ -37,8 +38,10 @@ namespace Shopmate.Services
             Console.WriteLine("List a new product for sale");
             Console.Write("Product Title: ");
             string title = Console.ReadLine();
+
             Console.Write("Product Description: ");
             string description = Console.ReadLine();
+
             Console.Write("Product Price: ");
             int price = Convert.ToInt32(Console.ReadLine());
 
@@ -46,6 +49,7 @@ namespace Shopmate.Services
             Console.WriteLine("Title: " + title);
             Console.WriteLine("Description: " + description);
             Console.WriteLine("Price: " + price);
+
             Console.WriteLine("Ready to sale?");
             Console.WriteLine("1. Add Product");
             Console.WriteLine("2. Cancel");
@@ -55,8 +59,9 @@ namespace Shopmate.Services
                 StoreHome();
             else
             {
-                Shopmate.Models.Products.Add(Auth.loggedInUser.UserName, Auth.loggedInUser.ShopName, title, description, price);
+                Products.Add(Auth.loggedInUser.UserName, Auth.loggedInUser.ShopName, title, description, price);
                 Console.WriteLine("Product listed successfully!");
+
                 Console.WriteLine("1. Add another product");
                 Console.WriteLine("2. View product list");
                 Console.WriteLine("0. Go back to my store");
@@ -81,7 +86,7 @@ namespace Shopmate.Services
 
             ShopMateUtils.PageName("My Products");
 
-            Shopmate.Models.Products.ShowByUsername(Auth.loggedInUser.UserName);
+            Products.ShowByUsername(Auth.loggedInUser.UserName);
 
             Console.WriteLine("0. Go back to my store");
             Console.Write("Choose: ");
@@ -92,6 +97,7 @@ namespace Shopmate.Services
         public static void MyOrders()
         {
             Orders.ShowStoreOrder(Auth.loggedInUser.UserName);
+
             Console.WriteLine("0. Back to home");
             Console.Write("Choose: ");
             Console.ReadLine();

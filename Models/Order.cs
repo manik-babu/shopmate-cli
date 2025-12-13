@@ -37,14 +37,14 @@ namespace Shopmate.Models
         {
             orders[OrderCount] = new Order(++OrderCount, orderedBy, orderedTo, quantity, product, address);
         }
-        public static void ShowStoreOrder(string userName)
+        public static void ShowStoreOrder(string sellerUserName)
         {
             bool orderFound = false;
             Console.WriteLine("----------------------------------------------------------------");
             for (int i = OrderCount - 1; i >= 0; i--)
             {
                 Order order = orders[i];
-                if (order.OrderedTo == userName)
+                if (order.OrderedTo == sellerUserName)
                 {
                     Console.WriteLine($"Ordered By: \t\t{order.OrderedBy}");
                     Console.WriteLine($"Product ID: \t\t{order.Product.ProductId}");
@@ -61,14 +61,14 @@ namespace Shopmate.Models
                 Console.WriteLine("No order found!");
             }
         }
-        public static void ShowCustomerOrders(string userName)
+        public static void ShowCustomerOrders(string cutomerUserName)
         {
             bool orderFound = false;
             Console.WriteLine("----------------------------------------------------------------");
             for (int i = OrderCount - 1; i >= 0; i--)
             {
                 Order order = orders[i];
-                if (order.OrderedBy == userName)
+                if (order.OrderedBy == cutomerUserName)
                 {
                     Console.WriteLine($"Shop Name: \t\t{order.Product.ShopName}({order.Product.Owner})");
                     Console.WriteLine($"Product ID: \t\t{order.Product.ProductId}");
@@ -82,7 +82,7 @@ namespace Shopmate.Models
             }
             if (!orderFound)
             {
-                Console.WriteLine("No order found!");
+                Console.WriteLine("You have no orders rigth now");
             }
         }
     }

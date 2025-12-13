@@ -55,7 +55,7 @@ namespace Shopmate.Models
             }
             if (!cartFound)
             {
-                Console.WriteLine("No cart found!");
+                Console.WriteLine("You have no cart yet");
             }
         }
         public static void RemoveCartItem(string customer, int cartId)

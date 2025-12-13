@@ -44,6 +44,8 @@ namespace Shopmate.Models
 
     class Users : IUsers
     {
+        // int nums[100];
+        // int[] nums = new int[100];
         private static User[] users = new User[100];
         private static int UserCount = 0;
         public static void Add(string fullName, string shopName, string userName, string password)

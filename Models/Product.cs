@@ -66,12 +66,12 @@ namespace Shopmate.Models
                 Console.WriteLine("---------------------------------------------");
             }
         }
-        public static void ShowByUsername(string userName)
+        public static void ShowByUsername(string sellerUserName)
         {
             Console.WriteLine("--------------------------------------------------------");
             for (int i = 0; i < ProductCount; i++)
             {
-                if (products[i].Owner == userName)
+                if (products[i].Owner == sellerUserName)
                 {
                     Console.WriteLine("Product ID: " + products[i].ProductId);
                     Console.WriteLine("Title: " + products[i].Title);
