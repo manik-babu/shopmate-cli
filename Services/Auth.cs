@@ -13,7 +13,6 @@ namespace Shopmate.Services
             {
                 ShopMateUtils.PageName("Authenthication");
                 Console.WriteLine("1. Login\n2. Signup");
-                Console.WriteLine("Choose one (1/2)");
                 Console.Write("Choose: ");
                 int input;
                 do

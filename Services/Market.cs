@@ -76,7 +76,7 @@ namespace Shopmate.Services
         {
             ShopMateUtils.PageName("Carts");
 
-            Carts.GetByCustomer(Auth.loggedInUser.UserName);
+            Carts.ShowCartItems(Auth.loggedInUser.UserName);
             Carts.ShowPriceDetails(Auth.loggedInUser.UserName);
 
             Console.WriteLine("1. Remove cart");
@@ -104,7 +104,7 @@ namespace Shopmate.Services
             if (choice != "c")
             {
                 int cartId = Convert.ToInt32(choice);
-                Carts.RemoveCart(Auth.loggedInUser.UserName, cartId);
+                Carts.RemoveCartItem(Auth.loggedInUser.UserName, cartId);
 
                 Console.WriteLine("Cart removed!");
                 ShowCartItems();
@@ -132,7 +132,7 @@ namespace Shopmate.Services
             string choice = Console.ReadLine().ToLower();
             if (choice != "n")
             {
-                Carts.AddOrder(address, Auth.loggedInUser.UserName);
+                Carts.PlaceOrder(address, Auth.loggedInUser.UserName);
             }
 
             MarketHome();
@@ -142,7 +142,7 @@ namespace Shopmate.Services
         public static void MyOrders()
         {
             ShopMateUtils.PageName("My Orders");
-            Orders.GetCustomerOrders(Auth.loggedInUser.UserName);
+            Orders.ShowCustomerOrders(Auth.loggedInUser.UserName);
 
             Console.WriteLine("0. Back to home");
             Console.Write("Choose: ");

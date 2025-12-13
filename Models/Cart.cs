@@ -21,10 +21,10 @@ namespace Shopmate.Models
     interface ICarts
     {
         public abstract static void Add(string customer, int quantity, Product product);
-        public abstract static void GetByCustomer(string customer);
-        public abstract static void RemoveCart(string customer, int cartId);
+        public abstract static void ShowCartItems(string customer);
+        public abstract static void RemoveCartItem(string customer, int cartId);
         public abstract static void ShowPriceDetails(string customer);
-        public abstract static void AddOrder(string address, string customer);
+        public abstract static void PlaceOrder(string address, string customer);
     }
 
     class Carts : ICarts
@@ -36,7 +36,7 @@ namespace Shopmate.Models
             carts[CartCount] = new Cart(CartCount + 1, customer, quantity, product);
             CartCount++;
         }
-        public static void GetByCustomer(string customer)
+        public static void ShowCartItems(string customer)
         {
             bool cartFound = false;
             Console.WriteLine("---------------------------------------------------");
@@ -58,7 +58,7 @@ namespace Shopmate.Models
                 Console.WriteLine("No cart found!");
             }
         }
-        public static void RemoveCart(string customer, int cartId)
+        public static void RemoveCartItem(string customer, int cartId)
         {
             if (cartId > 0 && cartId < CartCount && carts[cartId - 1].Customer == customer)
             {
@@ -94,7 +94,7 @@ namespace Shopmate.Models
             }
 
         }
-        public static void AddOrder(string address, string customer)
+        public static void PlaceOrder(string address, string customer)
         {
             bool cartFound = false;
             for (int i = 0; i < CartCount; i++)

@@ -26,8 +26,8 @@ namespace Shopmate.Models
     interface IOrders
     {
         public abstract static void add(string orderedBy, string orderedTo, int quantity, Product product, string address);
-        public abstract static void GetStoreOrder(string userName);
-        public abstract static void GetCustomerOrders(string userName);
+        public abstract static void ShowStoreOrder(string userName);
+        public abstract static void ShowCustomerOrders(string userName);
     }
     class Orders : IOrders
     {
@@ -37,7 +37,7 @@ namespace Shopmate.Models
         {
             orders[OrderCount] = new Order(++OrderCount, orderedBy, orderedTo, quantity, product, address);
         }
-        public static void GetStoreOrder(string userName)
+        public static void ShowStoreOrder(string userName)
         {
             bool orderFound = false;
             Console.WriteLine("----------------------------------------------------------------");
@@ -61,7 +61,7 @@ namespace Shopmate.Models
                 Console.WriteLine("No order found!");
             }
         }
-        public static void GetCustomerOrders(string userName)
+        public static void ShowCustomerOrders(string userName)
         {
             bool orderFound = false;
             Console.WriteLine("----------------------------------------------------------------");

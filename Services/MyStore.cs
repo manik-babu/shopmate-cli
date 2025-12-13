@@ -91,7 +91,7 @@ namespace Shopmate.Services
         }
         public static void MyOrders()
         {
-            Orders.GetStoreOrder(Auth.loggedInUser.UserName);
+            Orders.ShowStoreOrder(Auth.loggedInUser.UserName);
             Console.WriteLine("0. Back to home");
             Console.Write("Choose: ");
             Console.ReadLine();
