@@ -64,3 +64,16 @@ dotnet run
 2. Signup
 Choose: 
 ```
+---
+
+## 🛠️ Troubleshoot Dotnet Version Issue
+If you face any problem with dotnet version.
+### 1. Check installed dotnet version in your machine
+```bash
+dotnet --version
+```
+### 2. Update shopmate-cli.csproj file
+Change net version in TargetFramework with your installed dotnet version
+```csproj
+<TargetFramework>net[YOUR DOTNET VERSION]</TargetFramework>
+```
