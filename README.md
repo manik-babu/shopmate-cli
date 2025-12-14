@@ -77,7 +77,11 @@ Change net version in TargetFramework with your installed dotnet version
 ```csproj
 <TargetFramework>net[YOUR DOTNET VERSION]</TargetFramework>
 ```
-### 3. Open Terminal and restore
+### 3. Open Terminal and restore project dependencies
 ```bash
 dotnet restore
+```
+### 4. Run the application
+```bash
+dotnet run
 ```
