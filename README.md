@@ -77,3 +77,7 @@ Change net version in TargetFramework with your installed dotnet version
 ```csproj
 <TargetFramework>net[YOUR DOTNET VERSION]</TargetFramework>
 ```
+### 3. Open Terminal and restore
+```bash
+dotnet restore
+```
