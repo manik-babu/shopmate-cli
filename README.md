@@ -60,12 +60,7 @@ dotnet run
 ```
 ### Sample Menu (Example)
 ```bash
-1. Register
-2. Login
-3. Add Product
-4. View Products
-5. Buy Product
-6. My Listings
-7. Purchase History
-0. Exit
+1. Login
+2. Signup
+Choose: 
 ```
