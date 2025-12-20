@@ -7,7 +7,7 @@ namespace Shopmate.Helpers
         {
             Users.Add("Md Manik", "Tomato", "manik", "1234");
             User user = Users.Get("manik");
-            user.ShopName = "Tomato";
+            user.ShopName = "Banana";
         }
         public static void AddProduct()
         {
