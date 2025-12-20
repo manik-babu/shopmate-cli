@@ -86,7 +86,7 @@ dotnet restore
 dotnet run
 ```
 ## For any help
-Don't
+Don't hesitade to email me
 ```
 mdmanikbabu48@gmail.com
 ```
