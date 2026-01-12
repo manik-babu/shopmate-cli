@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/manik/HelloWorld/Fuck/New Folder/shopmate-cli/shopmate-cli.csproj",
+      "projectUniqueName": "/home/manik/Projects/shopmate-cli/shopmate-cli.csproj",
       "projectName": "shopmate-cli",
-      "projectPath": "/home/manik/HelloWorld/Fuck/New Folder/shopmate-cli/shopmate-cli.csproj",
+      "projectPath": "/home/manik/Projects/shopmate-cli/shopmate-cli.csproj",
       "packagesPath": "/home/manik/.nuget/packages/",
-      "outputPath": "/home/manik/HelloWorld/Fuck/New Folder/shopmate-cli/obj/",
+      "outputPath": "/home/manik/Projects/shopmate-cli/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/manik/.nuget/NuGet/NuGet.Config"
